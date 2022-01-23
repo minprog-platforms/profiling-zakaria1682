@@ -38,12 +38,9 @@ class Sudoku:
     def value_at(self, x: int, y: int) -> int:
         """Returns the value at x,y."""
         value = -1
-
-        for i in range(9):
-            for j in range(9):
-                if i == x and j == y:
-                    row = self._grid[y]
-                    value = int(row[x])
+        
+        row = self._grid[y]
+        value = int(row[x])
 
         return value
 
@@ -87,19 +84,15 @@ class Sudoku:
 
     def row_values(self, i: int) -> Iterable[int]:
         """Returns all values at i-th row."""
-        values = []
 
-        for j in range(9):
-            values.append(self.value_at(j, i))
+        values = [self.value_at(j, i) for j in range(9)]
 
         return values
 
     def column_values(self, i: int) -> Iterable[int]:
         """Returns all values at i-th column."""
-        values = []
 
-        for j in range(9):
-            values.append(self.value_at(i, j))
+        values = [self.value_at(i, j) for j in range(9)]
 
         return values
 
@@ -111,14 +104,11 @@ class Sudoku:
         3 4 5
         6 7 8
         """
-        values = []
 
         x_start = (i % 3) * 3
         y_start = (i // 3) * 3
 
-        for x in range(x_start, x_start + 3):
-            for y in range(y_start, y_start + 3):
-                values.append(self.value_at(x, y))
+        values = [self.value_at(x, y) for x in range(x_start, x_start + 3) for y in range(y_start, y_start + 3)]
 
         return values
 
@@ -133,20 +123,19 @@ class Sudoku:
         """
         values = [1, 2, 3, 4, 5, 6, 7, 8, 9]
 
-        result = True
 
         for i in range(9):
             for value in values:
                 if value not in self.column_values(i):
-                    result = False
+                    return False
 
                 if value not in self.row_values(i):
-                    result = False
+                    return False
 
                 if value not in self.block_values(i):
-                    result = False
+                    return False
 
-        return result
+        return True
 
     def __str__(self) -> str:
         representation = ""
