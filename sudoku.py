@@ -4,7 +4,7 @@ from typing import Iterable, Sequence
 
 class Sudoku:
     """A mutable sudoku puzzle."""
-
+ 
     def __init__(self, puzzle: Iterable[Iterable]):
         self._grid: list[str] = []
 
@@ -37,7 +37,6 @@ class Sudoku:
 
     def value_at(self, x: int, y: int) -> int:
         """Returns the value at x,y."""
-        value = -1
         
         row = self._grid[y]
         value = int(row[x])
