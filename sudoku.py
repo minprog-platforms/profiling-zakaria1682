@@ -39,15 +39,11 @@ class Sudoku:
         """Returns the value at x,y."""
 
         value = -1
-
-        for i in range(9):
-            for j in range(9):
-                if i == x and j == y:
-                    row = self._grid[y]
-                    value = int(row[x])
         
-        # row = self._grid[y]
-        # value = int(row[x])
+        if y < 9:
+            row = self._grid[y]
+        if x < 9:
+            value = int(row[x])
 
         return value
 
