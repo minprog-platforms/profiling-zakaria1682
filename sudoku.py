@@ -40,9 +40,9 @@ class Sudoku:
 
         value = -1
         
-        if y < 9:
+        if y <= 9:
             row = self._grid[y]
-        if x < 9:
+        if x <= 9:
             value = int(row[x])
 
         return value
