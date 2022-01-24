@@ -37,10 +37,10 @@ class Sudoku:
 
     def value_at(self, x: int, y: int) -> int:
         """Returns the value at x,y."""
-        
+
         value = -1
         
-        if y < 9 and x < 9:
+        if y < 9 and y >= 0 and x < 9 and x >= 0:
             row = self._grid[y]
             value = int(row[x])
 
